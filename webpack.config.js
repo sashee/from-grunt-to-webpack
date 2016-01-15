@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 var babelLoaders = "presets[]=es2015&presets[]=react";
 if(process.env.NODE_ENV !==	"production") {
 	babelLoaders += "&presets[]=react-hmre";
