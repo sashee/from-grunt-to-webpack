@@ -1,8 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-var babelLoaders = "presets[]=es2015&presets[]=react";
-if(process.env.NODE_ENV !==	"production") {
-	babelLoaders += "&presets[]=react-hmre";
+var babelPresets = ["es2015", "react"];
+if(process.env.NODE_ENV !== "production") {
+	babelPresets.push("react-hmre");
 }
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
 			{
 				test: /\.js[x]?$/,
 				exclude: /node_modules/ ,
-				loaders: ["babel-loader?" + babelLoaders]
+				loaders: ["babel-loader?" + babelPresets.map((preset) => `presets[]=${preset}`).join("&")]
 			},
 			{
 				test: /.css$/,
