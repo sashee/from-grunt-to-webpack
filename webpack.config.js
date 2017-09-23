@@ -29,7 +29,8 @@ module.exports = {
               presets: [
                 ["latest", {"es2015": false}],
                 "react",
-              ]
+              ],
+              plugins: ['transform-class-properties']
             },
           }
         ]

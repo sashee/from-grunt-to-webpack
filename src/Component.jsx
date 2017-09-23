@@ -10,7 +10,7 @@ export default class Component extends React.Component {
     };
   }
 
-  handleClick(i) {
+  handleClick = (i) => {
     this.setState({ counter: this.state.counter + 1 });
   }
 
