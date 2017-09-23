@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 var babelPresets = ["es2015", "react"];
 if(process.env.NODE_ENV !== "production") {
@@ -6,9 +7,9 @@ if(process.env.NODE_ENV !== "production") {
 }
 
 module.exports = {
-	entry: "./src/app.jsx",
+	entry: [path.join(__dirname, 'src/app.jsx')],
 	output: {
-		path: "dist",
+		path: path.join(__dirname, 'dist'),
 		filename: "bundle.js"
 	},
 	plugins: [
@@ -17,12 +18,22 @@ module.exports = {
 		})
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js[x]?$/,
-				exclude: /node_modules/ ,
-				loaders: ["babel-loader?" + babelPresets.map((preset) => `presets[]=${preset}`).join("&")]
-			},
+				exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                ["latest", {"es2015": false}],
+                "react",
+              ]
+            },
+          }
+        ]
+      },
 			{
 				test: /.css$/,
 				loader: "style-loader!css-loader"
@@ -30,5 +41,4 @@ module.exports = {
 		]
 	},
 	devtool: "source-map",
-	debug: true
 };
