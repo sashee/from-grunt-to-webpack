@@ -10,16 +10,23 @@ export default class Component extends React.Component {
     };
   }
 
-  handleClick = (i) => {
+  increaseCounter = (i) => {
     this.setState({ counter: this.state.counter + 1 });
+  }
+
+  resetCounter = (i) => {
+    this.setState({ counter: 0 });
   }
 
   render() {
     return (
       <div className="component">
         <h1>{this.state.counter}</h1>
-        <button onClick={() => this.handleClick("bob")}>
+        <button onClick={() => this.increaseCounter()}>
           Increment counter
+        </button>
+        <button onClick={() => this.resetCounter()}>
+          Reset counter
         </button>
       </div>
     );
