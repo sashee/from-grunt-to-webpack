@@ -1,14 +1,10 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-var babelPresets = ["es2015", "react"];
-if(process.env.NODE_ENV !== "production") {
-	babelPresets.push("react-hmre");
-}
+const path = require('path');
 
 module.exports = {
 	entry: "./src/app.jsx",
 	output: {
-		path: "dist",
+		path: path.join(__dirname, "dist"),
 		filename: "bundle.js"
 	},
 	plugins: [
@@ -17,11 +13,22 @@ module.exports = {
 		})
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js[x]?$/,
-				exclude: /node_modules/ ,
-				loaders: ["babel-loader?" + babelPresets.map((preset) => `presets[]=${preset}`).join("&")]
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: "babel-loader",
+						options: {
+							presets: [
+								["latest", {"es2015": false}],
+								"react",
+							],
+							plugins: ['transform-class-properties']
+						},
+					}
+				]
 			},
 			{
 				test: /.css$/,
@@ -30,5 +37,4 @@ module.exports = {
 		]
 	},
 	devtool: "source-map",
-	debug: true
 };
