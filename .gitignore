@@ -2,3 +2,4 @@ node_modules
 *.swp
 dist/
 .DS_STORE
+.npm
