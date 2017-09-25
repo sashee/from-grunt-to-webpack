@@ -22,19 +22,19 @@ module.exports = {
 			{
 				test: /\.js[x]?$/,
 				exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                ["latest", {"es2015": false}],
-                "react",
-              ],
-              plugins: ['transform-class-properties']
-            },
-          }
-        ]
-      },
+				use: [
+					{
+						loader: "babel-loader",
+						options: {
+							presets: [
+								["latest", {"es2015": false}],
+								"react",
+							],
+							plugins: ['transform-class-properties']
+						},
+					}
+				]
+			},
 			{
 				test: /.css$/,
 				loader: "style-loader!css-loader"

@@ -7,5 +7,5 @@ import ReactDOM from "react-dom";
 import Component from "./Component.jsx";
 
 ReactDOM.render(
-  <Component/>, document.getElementById('main')
+	<Component/>, document.getElementById('main')
 );
