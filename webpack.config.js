@@ -1,11 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require('path');
 
-var babelPresets = ["es2015", "react"];
-if(process.env.NODE_ENV !== "production") {
-	babelPresets.push("react-hmre");
-}
-
 module.exports = {
 	entry: [path.join(__dirname, 'src/app.jsx')],
 	output: {
